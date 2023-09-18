@@ -16,6 +16,12 @@ const Counter = () => {
     dispatch({ type: "increment" });
   };
 
+  // Define an event handler to increase the counter by a specified amount.
+  const increaseHandler = () => {
+    // Dispatch an 'increase' action with the amount to the Redux store.
+    dispatch({ type: "increase", amount: 5 });
+  };
+
   // Define an event handler to decrement the counter.
   const decrementHandler = () => {
     // Dispatch a 'decrement' action to the Redux store.
@@ -32,6 +38,7 @@ const Counter = () => {
       <div className={classes.value}>{counter}</div>
       <div>
         <button onClick={incrementHandler}>Increment</button>
+        <button onClick={increaseHandler}>Increase by 5</button>
         <button onClick={decrementHandler}>Decrement</button>
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>

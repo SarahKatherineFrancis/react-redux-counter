@@ -1,7 +1,7 @@
 // Importing the createStore function from the Redux library.
 import { createStore } from "redux";
 
-// Defining a reducer function named counterReducer.
+// Define a reducer function named counterReducer.
 // Reducers specify how the application's state changes in response to actions.
 const counterReducer = (state = { counter: 0 }, action) => {
   // Check if the action type is "increment".
@@ -10,13 +10,19 @@ const counterReducer = (state = { counter: 0 }, action) => {
     return { counter: state.counter + 1 };
   }
 
+  // Check if the action type is "increase".
+  if (action.type === "increase") {
+    // If it is, return a new state object with the counter increased by the specified amount.
+    return { counter: state.counter + action.amount };
+  }
+
   // Check if the action type is "decrement".
   if (action.type === "decrement") {
     // If it is, return a new state object with the counter decremented by 1.
     return { counter: state.counter - 1 };
   }
 
-  // If the action type is neither "increment" nor "decrement",
+  // If the action type is neither "increment," "increase," nor "decrement",
   // return the current state unchanged.
   return state;
 };
