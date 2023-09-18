@@ -7,8 +7,9 @@ const Counter = () => {
   // Create a dispatch function to dispatch actions to the Redux store.
   const dispatch = useDispatch();
 
-  // Use useSelector to select and retrieve the 'counter' state from the Redux store.
+  // Use useSelector to select and retrieve the 'counter' and 'showCounter' states from the Redux store.
   const counter = useSelector((state) => state.counter);
+  const show = useSelector((state) => state.showCounter);
 
   // Define an event handler to increment the counter.
   const incrementHandler = () => {
@@ -28,14 +29,17 @@ const Counter = () => {
     dispatch({ type: "decrement" });
   };
 
-  // Placeholder function for a button click event handler (not implemented in this code).
-  const toggleCounterHandler = () => {};
+  // Define an event handler to toggle the visibility of the counter.
+  const toggleCounterHandler = () => {
+    // Dispatch a 'toggle' action to the Redux store.
+    dispatch({ type: "toggle" });
+  };
 
-  // Render the Counter component, displaying the current counter value and buttons for incrementing and decrementing.
+  // Render the Counter component, displaying the current counter value and buttons for incrementing, decrementing, and toggling.
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increase by 5</button>
